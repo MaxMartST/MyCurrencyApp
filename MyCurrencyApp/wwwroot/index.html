@@ -22,10 +22,7 @@
     <table class="table table-condensed table-striped  col-md-6">
         <thead>
             <tr>
-                <th>Сумма в руб.</th>
                 <th>Курс</th>
-                <th>Сумма в ин. в</th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -156,10 +153,6 @@
             const cursTd = document.createElement("td");
             cursTd.append(curs);
             tr.append(cursTd);
-
-            const resultTd = document.createElement("td");
-            resultTd.append(27);
-            tr.append(resultTd);
 
             return tr;
         }
