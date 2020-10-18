@@ -8,8 +8,8 @@ namespace MyCurrencyApp.Data.Interfaces
 {
     public interface IAllCurrencys
     {
-        IEnumerable<Currency> Currencys { get; }
+        Task<IEnumerable<Currency>> Currencys();
 
-        Currency getObjectCurrency(string title);
+        Task<Currency> getObjectCurrency(string title);
     }
 }
