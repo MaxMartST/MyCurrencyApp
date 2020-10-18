@@ -21,9 +21,8 @@ namespace MyCurrencyApp.Controllers
             _allCurrencys = iAllCurrencys;
         }
 
-        [HttpGet]
-        [Route("Currency/{title}")]
-        public async Task<ActionResult<Currency>> Convector(string title)
+        [HttpGet("{title}")]
+        public ActionResult<Currency> convector(string title)
         {
             string _title = title;
 
@@ -31,17 +30,17 @@ namespace MyCurrencyApp.Controllers
             
             if (currency == null)
             {
-                return NotFound();
+                return Ok(NotFound());
             }
                 
-            return currency;
+            return Ok(currency);
         }
 
-        [HttpGet]
-        [Route("Currency/List")]
-        public async Task<ActionResult<IEnumerable<Currency>>> List()
-        {
-            return await _allCurrencys.Currencys.ToListAsync();
-        }
+        //[HttpGet]
+        //[Route("Currency/List")]
+        //public ActionResult<IEnumerable<Currency>> list()
+        //{
+        //    return Ok(_allCurrencys.Currencys);
+        //}
     }
 }

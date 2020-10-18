@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Convector</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <h2>Конвертация валюты</h2>
+    <div id="errors" class="alert alert-danger" style="display:none;"></div>
+    <form name="convectorForm">
+        <input type="hidden" name="id" value="0" />
+        <div class="form-group col-md-5">
+            <label for="name">У меня есть:</label>
+            <input class="form-control" name="from" />
+        </div>
+        <div class="panel-body">
+            <button type="submit" id="submit" class="btn btn-primary">Конвертировать</button>
+        </div>
+    </form>
+    <table class="table table-condensed table-striped  col-md-6">
+        <thead>
+            <tr>
+                <th>Сумма в руб.</th>
+                <th>Курс</th>
+                <th>Сумма в ин. в</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <script>
+
+        //async function GetUsers() {
+        //    // отправляет запрос и получаем ответ
+        //    const response = await fetch("/api/users", {
+        //        method: "GET",
+        //        headers: { "Accept": "application/json" }
+        //    });
+        //    // если запрос прошел нормально
+        //    if (response.ok === true) {
+        //        // получаем данные
+        //        const users = await response.json();
+        //        let rows = document.querySelector("tbody");
+        //        users.forEach(user => {
+        //            // добавляем полученные элементы в таблицу
+        //            rows.append(row(user));
+        //        });
+        //    }
+        //}
+        // Получение одного пользователя
+        async function getTheResult(title) {
+            const response = await fetch("/api/Currency/" + title, {
+                method: "GET",
+                headers: { "Accept": "application/json" }
+            });
+            if (response.ok === true) {
+                const user = await response.json();
+                
+                document.querySelector("tbody").append(row(user.description));
+            }
+        }
+        // Добавление пользователя
+        //async function CreateUser(userName, userAge) {
+
+        //    const response = await fetch("api/users", {
+        //        method: "POST",
+        //        headers: { "Accept": "application/json", "Content-Type": "application/json" },
+        //        body: JSON.stringify({
+        //            name: userName,
+        //            age: parseInt(userAge, 10)
+        //        })
+        //    });
+        //    if (response.ok === true) {
+        //        const user = await response.json();
+        //        reset();
+        //        document.querySelector("tbody").append(row(user));
+        //    }
+        //    else {
+        //        const errorData = await response.json();
+        //        console.log("errors", errorData);
+        //        if (errorData) {
+        //            // ошибки вследствие валидации по атрибутам
+        //            if (errorData.errors) {
+        //                if (errorData.errors["Name"]) {
+        //                    addError(errorData.errors["Name"]);
+        //                }
+        //                if (errorData.errors["Age"]) {
+        //                    addError(errorData.errors["Age"]);
+        //                }
+        //            }
+        //            // кастомные ошибки, определенные в контроллере
+        //            // добавляем ошибки свойства Name
+        //            if (errorData["Name"]) {
+        //                addError(errorData["Name"]);
+        //            }
+
+        //            // добавляем ошибки свойства Age
+        //            if (errorData["Age"]) {
+        //                addError(errorData["Age"]);
+        //            }
+        //        }
+
+        //        document.getElementById("errors").style.display = "block";
+        //    }
+        //}
+        // Изменение пользователя
+        //async function EditUser(userId, userName, userAge) {
+        //    const response = await fetch("api/users", {
+        //        method: "PUT",
+        //        headers: { "Accept": "application/json", "Content-Type": "application/json" },
+        //        body: JSON.stringify({
+        //            id: parseInt(userId, 10),
+        //            name: userName,
+        //            age: parseInt(userAge, 10)
+        //        })
+        //    });
+        //    if (response.ok === true) {
+        //        const user = await response.json();
+        //        reset();
+        //        document.querySelector("tr[data-rowid='" + user.id + "']").replaceWith(row(user));
+        //    }
+        //}
+        // Удаление пользователя
+        //async function DeleteUser(id) {
+        //    const response = await fetch("/api/users/" + id, {
+        //        method: "DELETE",
+        //        headers: { "Accept": "application/json" }
+        //    });
+        //    if (response.ok === true) {
+        //        const user = await response.json();
+        //        document.querySelector("tr[data-rowid='" + user.id + "']").remove();
+        //    }
+        //}
+
+        // сброс формы
+        function reset() {
+            const form = document.forms["convectorForm"];
+            form.reset();
+        }
+        //function addError(errors) {
+        //    errors.forEach(error => {
+        //        const p = document.createElement("p");
+        //        p.append(error);
+        //        document.getElementById("errors").append(p);
+        //    });
+        //}
+        // создание строки для таблицы
+        function row(decimal curs) {
+
+            const tr = document.createElement("tr");
+            tr.setAttribute("data-rowid", 1);
+
+            const cursTd = document.createElement("td");
+            cursTd.append(curs);
+            tr.append(cursTd);
+
+            const resultTd = document.createElement("td");
+            resultTd.append(27);
+            tr.append(resultTd);
+
+            return tr;
+        }
+        // сброс значений формы
+        //document.getElementById("reset").addEventListener("click", function (e) {
+
+        //    e.preventDefault();
+        //    reset();
+        //})
+
+        // отправка формы
+        document.forms["convectorForm"].addEventListener("submit", e => {
+            e.preventDefault();
+            document.getElementById("errors").innerHTML = "";
+            document.getElementById("errors").style.display = "none";
+
+            const form = document.forms["convectorForm"];
+            const from = form.elements["from"].value;
+
+            getTheResult("USD");
+        });
+
+        // загрузка пользователей
+        //GetUsers();
+
+    </script>
+</body>
+</html>
