@@ -25,14 +25,15 @@ namespace MyCurrencyApp.Controllers
         public async Task<ActionResult<Currency>> Convector(string title)
         {
             string _title = title;
-            Currency currency = await _allCurrencys.getObjectCurrency(_title);
+
+            Currency currency = _allCurrencys.getObjectCurrency(_title);
             
             if (currency == null)
             {
                 return NotFound();
             }
                 
-            return new ObjectResult(currency);
+            return currency;
         }
 
         // CurrencysContext db;
