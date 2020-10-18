@@ -22,6 +22,7 @@ namespace MyCurrencyApp.Controllers
         }
 
         [HttpGet]
+        [Route("Currency/{title}")]
         public async Task<ActionResult<Currency>> Convector(string title)
         {
             string _title = title;
@@ -36,78 +37,11 @@ namespace MyCurrencyApp.Controllers
             return currency;
         }
 
-        // CurrencysContext db;
-        // public CurrencysControllers(CurrencysContext context)
-        // {
-        //     db = context;
-        //     if (!db.Currencys.Any())
-        //     {
-        //         db.Currencys.Add(new Currency { fullName = "ДОЛЛАР США", title = "USD", description = 376.4M, quant = 1 });
-        //         db.Currencys.Add(new Currency { fullName = "ЕВРО", title = "EUR", description = 427.36M, quant = 1 });
-        //         db.SaveChanges();
-        //     }
-        // }
-
-        // [HttpGet]
-        // public async Task<ActionResult<IEnumerable<Currency>>> Get()
-        // {
-        //     return await db.Currencys.ToListAsync();
-        // }
-
-        // // GET api/currencys/5
-        // [HttpGet("{id}")]
-        // public async Task<ActionResult<Currency>> Get(int id)
-        // {
-        //     Currency currency = await db.Currencys.FirstOrDefaultAsync(x => x.id == id);
-        //     if (currency == null)
-        //         return NotFound();
-        //     return new ObjectResult(currency);
-        // }
-
-        // POST api/currencys
-        //[HttpPost]
-        // public async Task<ActionResult<Currency>> Post(Currency currency)
-        // {
-        //     if (currency == null)
-        //     {
-        //         return BadRequest();
-        //     }
-
-        //     db.Currencys.Add(currency);
-        //     await db.SaveChangesAsync();
-        //     return Ok(currency);
-        // }
-
-        // PUT api/currencys/
-        // [HttpPut]
-        // public async Task<ActionResult<Currency>> Put(Currency currency)
-        // {
-        //     if (currency == null)
-        //     {
-        //         return BadRequest();
-        //     }
-        //     if (!db.Currencys.Any(x => x.id == currency.id))
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     db.Update(currency);
-        //     await db.SaveChangesAsync();
-        //     return Ok(currency);
-        // }
-
-        // DELETE api/currencys/5
-        // [HttpDelete("{id}")]
-        // public async Task<ActionResult<Currency>> Delete(int id)
-        // {
-        //     Currency currency = db.Currencys.FirstOrDefault(x => x.id == id);
-        //     if (currency == null)
-        //     {
-        //         return NotFound();
-        //     }
-        //     db.Currencys.Remove(currency);
-        //     await db.SaveChangesAsync();
-        //     return Ok(currency);
-        // }
+        [HttpGet]
+        [Route("Currency/List")]
+        public async Task<ActionResult<IEnumerable<Currency>>> List()
+        {
+            return await _allCurrencys.Currencys.ToListAsync();
+        }
     }
 }
