@@ -10,22 +10,22 @@ namespace MyCurrencyApp.Data
     {
         public static void Initial(AppDBContent content)
         {
-            if (!content.Currencys.Any())
+            if (!content.Currency.Any())
             {
                 content.AddRange(
-                    new Currency 
-                    { 
-                        fullName = "ДОЛЛАР США", 
-                        title = "USD", 
-                        description = 376.4M, 
-                        quant = 1 
+                    new Currency
+                    {
+                        fullName = "ДОЛЛАР США",
+                        title = "USD",
+                        description = 376.4M,
+                        quant = 1
                     },
-                    new Currency 
-                    { 
-                        fullName = "ЕВРО", 
-                        title = "EUR", 
-                        description = 427.36M, 
-                        quant = 1 
+                    new Currency
+                    {
+                        fullName = "ЕВРО",
+                        title = "EUR",
+                        description = 427.36M,
+                        quant = 1
                     }
                 );
             }

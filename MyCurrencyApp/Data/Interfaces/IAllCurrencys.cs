@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace MyCurrencyApp.Data.Interfaces
 {
-    interface IAllCurrencys
+    public interface IAllCurrencys
     {
         IEnumerable<Currency> Currencys { get; }
 
-        Currency getObjectCar(string title);
+        Currency getObjectCurrency(string title);
     }
 }

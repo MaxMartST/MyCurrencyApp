@@ -16,6 +16,6 @@ namespace MyCurrencyApp.Data.Repository
         }
         public IEnumerable<Currency> Currencys => appDBContent.Currency;
 
-        public Currency getObjectCar(string title) => appDBContent.Currency.FirstOrDefault(p => p.title == title);
+        public Currency getObjectCurrency(string title) => appDBContent.Currency.FirstOrDefault(p => p.title == title);
     }
 }
