@@ -11,7 +11,7 @@ using MyCurrencyApp.Models;
 namespace MyCurrencyApp.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/Currency")]
     public class CurrencysControllers : Controller
     {
         private IAllCurrencys _allCurrencys;
@@ -22,11 +22,10 @@ namespace MyCurrencyApp.Controllers
         }
 
         [HttpGet("{title}")]
-        public ActionResult<Currency> convector(string title)
+        public async Task<ActionResult<Currency>> convector(string title)
         {
-            string _title = title;
 
-            Currency currency = _allCurrencys.getObjectCurrency(_title);
+            Currency currency = await _allCurrencys.getObjectCurrency(title);
             
             if (currency == null)
             {
@@ -36,11 +35,12 @@ namespace MyCurrencyApp.Controllers
             return Ok(currency);
         }
 
-        //[HttpGet]
-        //[Route("Currency/List")]
-        //public ActionResult<IEnumerable<Currency>> list()
-        //{
-        //    return Ok(_allCurrencys.Currencys);
-        //}
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Currency>>> list()
+        {
+            var a = await _allCurrencys.Currencys();
+            return Ok(a);
+        }
     }
 }

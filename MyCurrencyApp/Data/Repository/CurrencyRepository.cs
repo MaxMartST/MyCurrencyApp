@@ -1,4 +1,5 @@
-﻿using MyCurrencyApp.Data.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using MyCurrencyApp.Data.Interfaces;
 using MyCurrencyApp.Models;
 using System;
 using System.Collections.Generic;
@@ -14,8 +15,14 @@ namespace MyCurrencyApp.Data.Repository
         {
             this.appDBContent = appDBContent;
         }
-        public IEnumerable<Currency> Currencys => appDBContent.Currency;
+        public async Task<IEnumerable<Currency>> Currencys()
+        {
+            return await appDBContent.Currency.ToListAsync();
+        }
 
-        public Currency getObjectCurrency(string title) => appDBContent.Currency.FirstOrDefault(p => p.title == title);
+        public async Task<Currency> getObjectCurrency(string title)
+        {
+            return await appDBContent.Currency.Where(p => p.title == title).FirstOrDefaultAsync();
+        }
     }
 }

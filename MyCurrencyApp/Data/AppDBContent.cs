@@ -16,6 +16,5 @@ namespace MyCurrencyApp.Data
         }
 
         public DbSet<Currency> Currency { get; set; }
-        public object Currencys { get; internal set; }
     }
 }
