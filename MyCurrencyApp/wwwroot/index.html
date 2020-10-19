@@ -12,8 +12,12 @@
     <form name="convectorForm">
         <input type="hidden" name="id" value="0" />
         <div class="form-group col-md-5">
-            <label for="name">У меня есть:</label>
-            <input class="form-control" name="from" />
+            <label for="have">У меня есть:</label>
+            <input class="form-control" name="from" type="number"/>
+        </div>
+        <div class="form-group col-md-5">
+            <label for="choose">Конвертировать в:</label>
+            <input class="form-control" name="title"/>
         </div>
         <div class="panel-body">
             <button type="submit" id="submit" class="btn btn-primary">Конвертировать</button>
@@ -194,8 +198,9 @@
 
             const form = document.forms["convectorForm"];
             const from = form.elements["from"].value;
+            const title = form.elements["title"].value;
 
-            getTheResult("USD", from);
+            getTheResult(title, from);
         });
 
     </script>
