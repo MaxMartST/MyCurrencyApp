@@ -1,4 +1,5 @@
-﻿using MyCurrencyApp.Data.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using MyCurrencyApp.Data.Interfaces;
 using MyCurrencyApp.Models;
 using System;
 using Microsoft.EntityFrameworkCore;

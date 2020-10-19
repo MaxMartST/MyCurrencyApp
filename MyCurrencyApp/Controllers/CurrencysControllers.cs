@@ -26,7 +26,7 @@ namespace MyCurrencyApp.Controllers
         {
 
             Currency currency = await _allCurrencys.getObjectCurrency(title);
-
+            
             if (currency == null)
             {
                 return Ok(NotFound());

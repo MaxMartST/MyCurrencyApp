@@ -34,7 +34,8 @@ namespace MyCurrencyApp
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.AddMvc(options => options.EnableEndpointRouting = false);
+            services.AddMvc();
+            services.AddSwaggerGen();
             //пропишем, что используем кешь и сессии
             services.AddMemoryCache();
             services.AddSession();
@@ -46,13 +47,24 @@ namespace MyCurrencyApp
             app.UseStatusCodePages();//отображать код ошибок
             app.UseStaticFiles();//работать с статическими файлами
             app.UseSession();//используем сессии
-
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers(); 
+                endpoints.MapControllerRoute(
+                   name: "default",
+                   pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllers();
+            //});
 
             //подключение к AppDBContent - БД
             using (var scope = app.ApplicationServices.CreateScope())
