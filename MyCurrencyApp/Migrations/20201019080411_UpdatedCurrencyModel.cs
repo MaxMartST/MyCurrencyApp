@@ -2,7 +2,7 @@
 
 namespace MyCurrencyApp.Migrations
 {
-    public partial class MyMigration : Migration
+    public partial class UpdatedCurrencyModel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,10 +12,11 @@ namespace MyCurrencyApp.Migrations
                 {
                     id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    numCode = table.Column<int>(nullable: false),
                     fullName = table.Column<string>(nullable: true),
                     title = table.Column<string>(nullable: true),
-                    description = table.Column<decimal>(nullable: false),
-                    quant = table.Column<int>(nullable: false)
+                    value = table.Column<decimal>(nullable: false),
+                    nominal = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

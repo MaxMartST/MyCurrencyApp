@@ -9,8 +9,8 @@ using MyCurrencyApp.Data;
 namespace MyCurrencyApp.Migrations
 {
     [DbContext(typeof(AppDBContent))]
-    [Migration("20201018142317_MyMigration")]
-    partial class MyMigration
+    [Migration("20201019080411_UpdatedCurrencyModel")]
+    partial class UpdatedCurrencyModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,17 +27,20 @@ namespace MyCurrencyApp.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("description")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<string>("fullName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("quant")
+                    b.Property<int>("nominal")
+                        .HasColumnType("int");
+
+                    b.Property<int>("numCode")
                         .HasColumnType("int");
 
                     b.Property<string>("title")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("value")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("id");
 

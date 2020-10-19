@@ -8,9 +8,10 @@ namespace MyCurrencyApp.Models
     public class Currency
     {
         public int id { get; set; }
+        public int numCode { get; set; }
         public string fullName { get; set; }
         public string title { get; set; }
-        public decimal description { get; set; }
-        public int quant { get; set; }
+        public decimal value { get; set; }
+        public int nominal { get; set; }
     }
 }

@@ -15,17 +15,19 @@ namespace MyCurrencyApp.Data
                 content.AddRange(
                     new Currency
                     {
-                        fullName = "ДОЛЛАР США",
+                        numCode = 840,
+                        fullName = "Доллар США",
                         title = "USD",
-                        description = 376.4M,
-                        quant = 1
+                        value = 77.9644M,
+                        nominal = 1
                     },
                     new Currency
                     {
-                        fullName = "ЕВРО",
+                        numCode = 978,
+                        fullName = "Евро",
                         title = "EUR",
-                        description = 427.36M,
-                        quant = 1
+                        value = 91.3041M,
+                        nominal = 1
                     }
                 );
             }

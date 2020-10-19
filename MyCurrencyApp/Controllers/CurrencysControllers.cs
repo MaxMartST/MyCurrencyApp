@@ -10,8 +10,8 @@ using MyCurrencyApp.Models;
 
 namespace MyCurrencyApp.Controllers
 {
-    [ApiController]
-    [Route("api/Currency")]
+    //[ApiController]
+    //[Route("api/Currency")]
     public class CurrencysControllers : Controller
     {
         private IAllCurrencys _allCurrencys;
@@ -21,7 +21,7 @@ namespace MyCurrencyApp.Controllers
             _allCurrencys = iAllCurrencys;
         }
 
-        [HttpGet("{title}")]
+        [Route("api/Currency/{title}")]
         public async Task<ActionResult<Currency>> convector(string title)
         {
 

@@ -25,17 +25,20 @@ namespace MyCurrencyApp.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("description")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<string>("fullName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("quant")
+                    b.Property<int>("nominal")
+                        .HasColumnType("int");
+
+                    b.Property<int>("numCode")
                         .HasColumnType("int");
 
                     b.Property<string>("title")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("value")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("id");
 
