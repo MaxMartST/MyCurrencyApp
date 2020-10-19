@@ -24,28 +24,30 @@ namespace MyCurrencyApp.Data
                         dataRate = new DateTime(2015, 7, 20),
                         value = 56.8423M,
                         nominal = 1,
-                        currency = Currencys["USD"]
+                        Currency = Currencys["USD"]
                     },
                     new Rate {
                         dataRate = new DateTime(2020, 10, 19),
-                        value = 79644M,
+                        value = 79.644M,
                         nominal = 1,
-                        currency = Currencys["USD"]
+                        Currency = Currencys["USD"]
                     },
                     new Rate {
                         dataRate = new DateTime(2015, 7, 20),
                         value = 61.9183M,
                         nominal = 1,
-                        currency = Currencys["EUR"]
+                        Currency = Currencys["EUR"]
                     },
                     new Rate {
                         dataRate = new DateTime(2020, 10, 19),
                         value = 91.304M,
                         nominal = 1,
-                        currency = Currencys["EUR"]
+                        Currency = Currencys["EUR"]
                     }
                 );
             }
+
+            content.SaveChanges();
         }
 
         private static Dictionary<string, Currency> currency;
