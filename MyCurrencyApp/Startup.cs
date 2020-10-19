@@ -30,7 +30,8 @@ namespace MyCurrencyApp
 
             //теперь когда мы хотим подключить DB наши интерфейсы реализуются подругому 
             //итерфейсы реализуются от классов, которые связанны с DB
-            services.AddTransient<IAllCurrencys, CurrencyRepository>();
+            services.AddTransient<IRatesCurrency, CurrencyRepository>();
+            services.AddTransient<IAllRates, RateRepository>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -61,11 +62,6 @@ namespace MyCurrencyApp
                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllers();
-            //});
-
             //подключение к AppDBContent - БД
             using (var scope = app.ApplicationServices.CreateScope())
             {
@@ -73,6 +69,8 @@ namespace MyCurrencyApp
                 //при старте программы вызвается
                 DBObjects.Initial(content);
             };
+
+
         }
     }
 }

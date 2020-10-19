@@ -1,4 +1,6 @@
-﻿using MyCurrencyApp.Models;
+﻿using Microsoft.AspNetCore.Builder;
+using MyCurrencyApp.Data.Models;
+using MyCurrencyApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,28 +14,62 @@ namespace MyCurrencyApp.Data
         {
             if (!content.Currency.Any())
             {
+                content.Currency.AddRange(Currencys.Select(c => c.Value));
+            }
+
+            if (!content.Rate.Any())
+            {
                 content.AddRange(
-                    new Currency
-                    {
-                        numCode = 840,
-                        fullName = "Доллар США",
-                        title = "USD",
-                        value = 77.9644M,
-                        nominal = 1
+                    new Rate { 
+                        dataRate = new DateTime(2015, 7, 20),
+                        value = 56.8423M,
+                        nominal = 1,
+                        currency = Currencys["USD"]
                     },
-                    new Currency
-                    {
-                        numCode = 978,
-                        fullName = "Евро",
-                        title = "EUR",
-                        value = 91.3041M,
-                        nominal = 1
+                    new Rate {
+                        dataRate = new DateTime(2020, 10, 19),
+                        value = 79644M,
+                        nominal = 1,
+                        currency = Currencys["USD"]
+                    },
+                    new Rate {
+                        dataRate = new DateTime(2015, 7, 20),
+                        value = 61.9183M,
+                        nominal = 1,
+                        currency = Currencys["EUR"]
+                    },
+                    new Rate {
+                        dataRate = new DateTime(2020, 10, 19),
+                        value = 91.304M,
+                        nominal = 1,
+                        currency = Currencys["EUR"]
                     }
                 );
             }
+        }
 
-            //сохранить все изменения в БД
-            content.SaveChanges();
+        private static Dictionary<string, Currency> currency;
+        public static Dictionary<string, Currency> Currencys
+        {
+            get
+            {
+                if (currency == null)
+                {
+                    var list = new Currency[]
+                    {
+                        new Currency { numCode = 840, fullName = "Доллар США", title = "USD"},
+                        new Currency { numCode = 978, fullName = "Евро", title = "EUR"}
+                    };
+
+                    currency = new Dictionary<string, Currency>();
+                    foreach (Currency elem in list)
+                    {
+                        currency.Add(elem.title, elem);
+                    }
+                }
+
+                return currency;
+            }
         }
     }
 }

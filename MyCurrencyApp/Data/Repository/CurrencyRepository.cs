@@ -12,19 +12,20 @@ using System.Threading.Tasks;
 
 namespace MyCurrencyApp.Data.Repository
 {
-    public class CurrencyRepository : IAllCurrencys
+    public class CurrencyRepository : IRatesCurrency
     {
         private readonly AppDBContent appDBContent;
         public CurrencyRepository(AppDBContent appDBContent)
         {
             this.appDBContent = appDBContent;
         }
-        public async Task<IEnumerable<Currency>> Currencys()
+
+        public async Task<IEnumerable<Currency>> AllCurrencys()
         {
             return await appDBContent.Currency.ToListAsync();
         }
 
-        public async Task<Currency> getObjectCurrency(string title)
+        public async Task<Currency> getCurrency(string title)
         {
             return await appDBContent.Currency.Where(p => p.title == title || p.fullName == title).FirstOrDefaultAsync();
         }

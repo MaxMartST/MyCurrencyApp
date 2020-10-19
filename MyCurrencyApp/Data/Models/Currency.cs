@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyCurrencyApp.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,7 +12,6 @@ namespace MyCurrencyApp.Models
         public int numCode { get; set; }
         public string fullName { get; set; }
         public string title { get; set; }
-        public decimal value { get; set; }
-        public int nominal { get; set; }
+        public List<Rate> rates { get; set; }
     }
 }

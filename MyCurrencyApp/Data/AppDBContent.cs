@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyCurrencyApp.Data.Models;
 using MyCurrencyApp.Models;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace MyCurrencyApp.Data
         {
         }
 
+        public DbSet<Rate> Rate { get; set; }
         public DbSet<Currency> Currency { get; set; }
     }
 }
