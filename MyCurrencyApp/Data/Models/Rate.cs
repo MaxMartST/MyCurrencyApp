@@ -12,7 +12,6 @@ namespace MyCurrencyApp.Data.Models
         public DateTime dataRate { get; set; }
         public decimal value { get; set; }//курс
         public int nominal { get; set; }//номинал 
-        public int сurrencyID { get; set; }//индивидуальный номер валюты
         public virtual Currency Currency { get; set; }
         //значит что мы создаём объект на основе Currency
         //то есть со всему значениями, которые есть в Currency

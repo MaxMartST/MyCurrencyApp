@@ -1,4 +1,5 @@
-﻿using MyCurrencyApp.Data.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using MyCurrencyApp.Data.Interfaces;
 using MyCurrencyApp.Data.Models;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,15 @@ namespace MyCurrencyApp.Data.Repository
         {
             this.appDBContent = appDBContent;
         }
-        public Rate getObjectrat(DateTime dataRate) => appDBContent.Rate.FirstOrDefault(r => r.dataRate == dataRate);
+
+        public async Task<IEnumerable<Rate>> Rates()
+        {
+            return await appDBContent.Rate.ToListAsync();
+        }
+
+        public async Task<Rate> getObjectRate(DateTime dataRate)
+        {
+            return await appDBContent.Rate.Where(r => r.dataRate == dataRate).FirstOrDefaultAsync();
+        }
     }
 }

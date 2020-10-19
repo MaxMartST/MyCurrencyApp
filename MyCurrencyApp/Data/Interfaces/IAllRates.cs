@@ -8,7 +8,7 @@ namespace MyCurrencyApp.Data.Interfaces
 {
     interface IAllRates
     {
-
-        Rate getObjectrat(DateTime dataRate);
+        Task<IEnumerable<Rate>> Rates();
+        Task<Rate> getObjectRate(DateTime dataRate);
     }
 }
