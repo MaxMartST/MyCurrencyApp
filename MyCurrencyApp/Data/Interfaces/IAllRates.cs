@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyCurrencyApp.Data.Interfaces
 {
-    interface IAllRates
+    public interface IAllRates
     {
         Task<IEnumerable<Rate>> Rates();
         Task<Rate> getObjectRate(DateTime dataRate);

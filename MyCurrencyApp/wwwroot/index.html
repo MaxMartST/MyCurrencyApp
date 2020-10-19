@@ -39,7 +39,7 @@
         </tbody>
     </table>
     <script>
-        async function getTheResult(title, from) {
+        async function getTheResult(title, from, date) {
             const response = await fetch("/api/Currency/" + title, {
                 method: "GET",
                 headers: { "Accept": "application/json" }
@@ -47,12 +47,14 @@
 
             if (response.ok === true) {
                 const currency = await response.json();
-                let total = (from / (currency.value / currency.nominal)).toFixed(2);
+                //let total = (from / (currency.value / currency.nominal)).toFixed(2);
+                let listRate = currency.retes
+                let rate = listRate.getObjectRate(date);
 
                 let result = {
                     name: currency.fullName,
-                    rate: currency.value,
-                    total: total,
+                    rate: rate.value,
+                    total: 12,
                 };
 
                 let resBody = document.getElementById('orders_tbody');
@@ -94,8 +96,9 @@
             const form = document.forms["convectorForm"];
             const from = form.elements["from"].value;
             const title = form.elements["title"].value;
+            const date = form.elements["date"].value;
 
-            getTheResult(title, from);
+            getTheResult(title, from, date);
         });
 
     </script>
