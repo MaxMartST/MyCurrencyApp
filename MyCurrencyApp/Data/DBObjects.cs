@@ -14,61 +14,45 @@ namespace MyCurrencyApp.Data
         {
             if (!content.Currency.Any())
             {
-                content.Currency.AddRange(Currencys.Select(c => c.Value));
-
-                Currencys["USD"].rates = new List<Rate>()
-                {
-                    new Rate {
-                        dataRate = new DateTime(2015, 7, 20),
-                        value = 56.8423M,
-                        nominal = 1
-                    },
-                    new Rate {
-                        dataRate = new DateTime(2020, 10, 19),
-                        value = 79.644M,
-                        nominal = 1
-                    }
-                };
-
-                Currencys["EUR"].rates = new List<Rate>()
-                {
-                    new Rate {
-                        dataRate = new DateTime(2015, 7, 20),
-                        value = 61.9183M,
-                        nominal = 1
-                    },
-                    new Rate {
-                        dataRate = new DateTime(2020, 10, 19),
-                        value = 91.304M,
-                        nominal = 1
-                    }
-                };
+                content.Currency.AddRange(Currencys);
             }
 
             content.SaveChanges();
         }
 
-        private static Dictionary<string, Currency> currency;
-        public static Dictionary<string, Currency> Currencys
+        private static ICollection<Currency> Currencys
         {
             get
             {
-                if (currency == null)
+                return new List<Currency>
                 {
-                    var list = new Currency[]
+                    new Currency { numCode = 840, fullName = "Доллар США", title = "USD", rates = new List<Rate>()
                     {
-                        new Currency { numCode = 840, fullName = "Доллар США", title = "USD"},
-                        new Currency { numCode = 978, fullName = "Евро", title = "EUR"}
-                    };
-
-                    currency = new Dictionary<string, Currency>();
-                    foreach (Currency elem in list)
+                        new Rate {
+                            dataRate = new DateTime(2015, 7, 20),
+                            value = 56.8423M,
+                            nominal = 1
+                        },
+                        new Rate {
+                            dataRate = new DateTime(2020, 10, 19),
+                            value = 79.644M,
+                            nominal = 1
+                        }
+                    }},
+                    new Currency { numCode = 978, fullName = "Евро", title = "EUR", rates = new List<Rate>()
                     {
-                        currency.Add(elem.title, elem);
-                    }
-                }
-
-                return currency;
+                        new Rate {
+                            dataRate = new DateTime(2015, 7, 20),
+                            value = 61.9183M,
+                            nominal = 1
+                        },
+                        new Rate {
+                            dataRate = new DateTime(2020, 10, 19),
+                            value = 91.304M,
+                            nominal = 1
+                        }
+                    }}
+                };
             }
         }
     }

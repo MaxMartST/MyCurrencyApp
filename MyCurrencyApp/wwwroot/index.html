@@ -47,7 +47,6 @@
 
             if (response.ok === true) {
                 const currency = await response.json();
-                //let total = (from / (currency.value / currency.nominal)).toFixed(2);
                 let listRate = currency.rates;
                 let rate;
 
