@@ -10,8 +10,8 @@ using MyCurrencyApp.Data;
 namespace MyCurrencyApp.Migrations
 {
     [DbContext(typeof(AppDBContent))]
-    [Migration("20201020050857_update-models-4")]
-    partial class updatemodels4
+    [Migration("20201020052337_update-models-5")]
+    partial class updatemodels5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

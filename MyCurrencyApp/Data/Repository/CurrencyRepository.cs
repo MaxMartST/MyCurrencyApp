@@ -27,7 +27,7 @@ namespace MyCurrencyApp.Data.Repository
 
         public async Task<Currency> getCurrency(string title)
         {
-            return await appDBContent.Currency.Where(p => p.title == title || p.fullName == title).FirstOrDefaultAsync();
+            return await appDBContent.Currency.Include(e => e.rates).Where(p => p.title == title || p.fullName == title).FirstOrDefaultAsync();
         }
     }
 }

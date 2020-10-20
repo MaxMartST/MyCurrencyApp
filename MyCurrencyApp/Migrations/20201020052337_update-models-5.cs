@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyCurrencyApp.Migrations
 {
-    public partial class updatemodels4 : Migration
+    public partial class updatemodels5 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
