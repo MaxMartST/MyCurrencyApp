@@ -10,8 +10,8 @@ using MyCurrencyApp.Data;
 namespace MyCurrencyApp.Migrations
 {
     [DbContext(typeof(AppDBContent))]
-    [Migration("20201019174311_up-models-1")]
-    partial class upmodels1
+    [Migration("20201020050857_update-models-4")]
+    partial class updatemodels4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -70,7 +70,7 @@ namespace MyCurrencyApp.Migrations
 
             modelBuilder.Entity("MyCurrencyApp.Data.Models.Rate", b =>
                 {
-                    b.HasOne("MyCurrencyApp.Models.Currency", "Currency")
+                    b.HasOne("MyCurrencyApp.Models.Currency", null)
                         .WithMany("rates")
                         .HasForeignKey("Currencyid");
                 });

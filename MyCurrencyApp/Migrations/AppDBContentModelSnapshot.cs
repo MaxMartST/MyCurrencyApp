@@ -68,7 +68,7 @@ namespace MyCurrencyApp.Migrations
 
             modelBuilder.Entity("MyCurrencyApp.Data.Models.Rate", b =>
                 {
-                    b.HasOne("MyCurrencyApp.Models.Currency", "Currency")
+                    b.HasOne("MyCurrencyApp.Models.Currency", null)
                         .WithMany("rates")
                         .HasForeignKey("Currencyid");
                 });

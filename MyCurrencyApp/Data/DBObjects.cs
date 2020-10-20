@@ -15,36 +15,34 @@ namespace MyCurrencyApp.Data
             if (!content.Currency.Any())
             {
                 content.Currency.AddRange(Currencys.Select(c => c.Value));
-            }
 
-            if (!content.Rate.Any())
-            {
-                content.AddRange(
-                    new Rate { 
+                Currencys["USD"].rates = new List<Rate>()
+                {
+                    new Rate {
                         dataRate = new DateTime(2015, 7, 20),
                         value = 56.8423M,
-                        nominal = 1,
-                        Currency = Currencys["USD"]
+                        nominal = 1
                     },
                     new Rate {
                         dataRate = new DateTime(2020, 10, 19),
                         value = 79.644M,
-                        nominal = 1,
-                        Currency = Currencys["USD"]
-                    },
+                        nominal = 1
+                    }
+                };
+
+                Currencys["EUR"].rates = new List<Rate>()
+                {
                     new Rate {
                         dataRate = new DateTime(2015, 7, 20),
                         value = 61.9183M,
-                        nominal = 1,
-                        Currency = Currencys["EUR"]
+                        nominal = 1
                     },
                     new Rate {
                         dataRate = new DateTime(2020, 10, 19),
                         value = 91.304M,
-                        nominal = 1,
-                        Currency = Currencys["EUR"]
+                        nominal = 1
                     }
-                );
+                };
             }
 
             content.SaveChanges();
