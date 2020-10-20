@@ -48,13 +48,26 @@
             if (response.ok === true) {
                 const currency = await response.json();
                 //let total = (from / (currency.value / currency.nominal)).toFixed(2);
-                let listRate = currency.retes
-                let rate = listRate.getObjectRate(date);
+                let listRate = currency.rates;
+                let rate;
+
+                for (let i = 0; i < listRate.length; i++)
+                {
+                    let dateRate = new Date(listRate[i].dataRate);
+                    let strDate = formatDate(dateRate);
+                    if (strDate == date)
+                    {
+                        rate = listRate[i];
+                        break;
+                    }
+                }
+
+                let total = (from / (rate.value / rate.nominal)).toFixed(2);
 
                 let result = {
                     name: currency.fullName,
                     rate: rate.value,
-                    total: 12,
+                    total: total
                 };
 
                 let resBody = document.getElementById('orders_tbody');
@@ -64,6 +77,20 @@
 
                 resBody.append(row(result));
             }
+        }
+
+        function formatDate(date) {
+
+            var dd = date.getDate();
+            if (dd < 10) dd = '0' + dd;
+
+            var mm = date.getMonth() + 1;
+            if (mm < 10) mm = '0' + mm;
+
+            var yy = date.getFullYear();
+            if (yy < 10) yy = '0' + yy;
+
+            return `${yy}-${mm}-${dd}`;
         }
 
         // создание строки для таблицы
